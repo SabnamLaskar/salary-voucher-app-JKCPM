@@ -149,7 +149,7 @@ if salary_file:
     
     # Detect header row automatically
     
-    temp_df = pd.read_excel(salary_file, sheet_name="Input data(Earning & Deduction)", header=None)
+    temp_df = pd.read_excel(salary_file, header=None)
     header_row = temp_df[temp_df.apply(lambda row: row.astype(str).str.contains("Cost Centre").any(), axis=1)].index[0]
     
     df = pd.read_excel(salary_file, sheet_name="Input data(Earning & Deduction)", header=header_row)
@@ -212,3 +212,4 @@ if salary_file:
         data=output,
         file_name="processed_salary_summary.xlsx"
     )
+
