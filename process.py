@@ -152,7 +152,7 @@ if salary_file:
     temp_df = pd.read_excel(salary_file,sheet_name=0, header=None)
     header_row = temp_df[temp_df.apply(lambda row: row.astype(str).str.contains("Cost Centre").any(), axis=1)].index[0]
     
-    df = pd.read_excel(salary_file, sheet_name="Input data(Earning & Deduction)", header=header_row)
+    df = pd.read_excel(salary_file, sheet_name=0, header=header_row)
     df.columns = df.columns.map(lambda x: str(x).strip())
     df = df.dropna(subset=["Cost Centre"])
     df["Cost Centre"] = pd.to_numeric(df["Cost Centre"], errors="coerce").fillna(0).astype(int)
@@ -212,5 +212,6 @@ if salary_file:
         data=output,
         file_name="processed_salary_summary.xlsx"
     )
+
 
 
